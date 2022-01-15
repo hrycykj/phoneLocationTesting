@@ -88,7 +88,8 @@ const App = () => {
                   padding: 10,
                   borderRadius: 10,
                   width: '25%',
-                  borderWidth: 1
+                  borderWidth: 1,
+                  backgroundColor: '#fff'
                 }}
               >
                 <Button
