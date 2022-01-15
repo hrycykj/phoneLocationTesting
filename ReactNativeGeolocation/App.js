@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import * as Location from 'expo-location'
+import MapView, { Marker } from 'react-native-maps'
+
+const screenMapWidth = Dimensions.get('window').width
+const screenMapHeight = Dimensions.get('window').height
+let styles = {}
 
 const App = () => {
   const [location, setLocation] = useState(null)
   const [errorMsg, setErrorMessage] = useState(null)
+  const [showMap, setShowMap] = useState(false)
+
+  const mapLatAndLong = () => {
+      console.log ("inside the map lat & long function")
+      setShowMap(true)
+      return
+  }
 
   useEffect (() => {
     (async () => {
@@ -29,7 +41,7 @@ const App = () => {
     console.log (location.coords.latitude, location.coords.longitude, location.coords.accuracy)
   }
 
-  
+
   // const permissionHandle = async () => {
   //   console.log('inside the permissionHandle function')
 
@@ -47,43 +59,66 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.container}>
+      {(!showMap) && <View style={styles.container}>
         <Text>This is my location testing app</Text>    
-      </View>
-      {/* <View style={{marginTop: 10, padding: 10, borderRadius: 10, width: '40%'}}>
-        <Button
-          title="Get Location"
-          onPress={permissionHandle}
-        />
-      </View>
-      <Text>Lattitude: </Text>
-      <Text>Longitude: </Text>
-      <View style={{marginTop: 10, padding: 10, borderRadius: 10, width: '40%'}}>
-        <Button
-          title="Send Location"
-        />
-      </View> */}
-      <View style = {styles.container}>
-        {(location) 
-          ? (<View>
+      </View>} 
+      {(location&&!showMap) &&
+        <View style={{marginTop: 10, padding: 10, borderRadius: 10, width: '30%', borderWidth: 1}}>
+            <Button
+              title="Map It!"
+              onPress={mapLatAndLong}
+          />
+        </View>
+      }
+        {(showMap&&location) ?
+            <View style={styles.container}>
+              <MapView
+                style={styles.map}
+                region={{
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
+                  latitudeDelta: (location.coords.accuracy*30/111111),
+                  longitudeDelta: (location.coords.accuracy*1/111111),
+                }}
+              >
+                <Marker
+                  coordinate={{
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                  }}
+                  title={'Me!'}
+                  flat={true}
+                />
+              </MapView>
+            </View>
+        :   <Text></Text>
+        }
+
+      {(!showMap)&&<View style = {styles.container}>
+        {(location)
+          ? <View>
               <Text>Latitude: {location.coords.latitude}</Text>
               <Text>Longitude: {location.coords.longitude}</Text>
               <Text>Accuracy: {location.coords.accuracy}</Text>
-            </View>)
-          : <Text>{text}</Text>}
-      </View>
-
+            </View>
+          : <Text>{text}</Text>
+        }
+      </View>}
       <StatusBar style="auto" />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  map: {
+    width: screenMapWidth,
+    height: screenMapHeight,
   },
 });
 
