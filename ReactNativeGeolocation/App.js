@@ -20,6 +20,11 @@ const App = () => {
       return
   }
 
+  const returnFromMap = () => {
+    console.log ("returnFromMap pressed")
+    setShowMap(false)
+  }
+
   useEffect (() => {
     (async () => {
       let {status} = await Location.requestForegroundPermissionsAsync ()
@@ -40,22 +45,6 @@ const App = () => {
     text=JSON.stringify(location)
     console.log (location.coords.latitude, location.coords.longitude, location.coords.accuracy)
   }
-
-
-  // const permissionHandle = async () => {
-  //   console.log('inside the permissionHandle function')
-
-  //   let permission = await RNLocation.checkPermission({
-  //     ios: 'whenInUse', // or 'always'
-  //     android: {
-  //       detail: 'course' // or 'fine'
-  //     }
-  //   })
-
-  //   console.log('made it past the check permission request to see what its status is')
-  //   console.log(permission)
-
-  // }
 
   return (
     <View style={styles.container}>
@@ -90,6 +79,23 @@ const App = () => {
                   flat={true}
                 />
               </MapView>
+              <View
+                style={{
+                  position: 'absolute',//use absolute position to show button on top of the map
+                  top: '5%', //for center align
+                  // alignSelf: 'flex-end' //for align to right
+                  marginTop: 10,
+                  padding: 10,
+                  borderRadius: 10,
+                  width: '25%',
+                  borderWidth: 1
+                }}
+              >
+                <Button
+                  title="Return"
+                  onPress={returnFromMap}
+                />
+              </View>
             </View>
         :   <Text></Text>
         }
