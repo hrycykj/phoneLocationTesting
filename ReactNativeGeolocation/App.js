@@ -9,6 +9,7 @@ const screenMapWidth = Dimensions.get('window').width
 const screenMapHeight = Dimensions.get('window').height
 let styles = {}
 const route = [
+  {latitude: 51.04787754648784, longitude: -114.0498765498685},
   {latitude: 51.04769262287585, longitude: -114.04988370706592},
   {latitude: 51.04780728888966, longitude: -114.0505864451202},
   {latitude: 51.046185944568315, longitude: -114.05069665072232},
