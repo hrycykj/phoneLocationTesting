@@ -5,6 +5,8 @@ import { Button, StyleSheet, Text, View, Dimensions } from 'react-native';
 import * as Location from 'expo-location'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 
+import CurrentMapview from './components/CurrentMapview'
+
 const screenMapWidth = Dimensions.get('window').width
 const screenMapHeight = Dimensions.get('window').height
 let styles = {}
@@ -131,21 +133,18 @@ const App = () => {
 
         {(showCoffeeMap&&location) &&
             <View style={styles.container}>
-              <MapView
-                style={styles.map}
-                region={{
-                  latitude: 51.046411678111916, 
-                  longitude: -114.05200055414592,
-                  latitudeDelta: .008,
-                  longitudeDelta: .005,
-                }}
+              <CurrentMapview
+                  latitude= {51.046411678111916} 
+                  longitude= {-114.05200055414592}
+                  latitudeDelta= {.008}
+                  longitudeDelta= {.005}
               >
                 <Polyline
                   coordinates={route}
                   strokeColor='#3399ff'
                   strokeWidth={6}
                 />
-              </MapView>
+              </CurrentMapview>
               <View
                 style={{
                   position: 'absolute',//use absolute position to show button on top of the map
