@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View, Dimensions } from 'react-native';
+import { Button, StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 
 import * as Location from 'expo-location'
 import MapView, { Marker, Polyline } from 'react-native-maps'
@@ -107,8 +107,16 @@ const App = () => {
                     longitude: location.coords.longitude,
                   }}
                   title={'Me!'}
-                  flat={true}
-                />
+                  flat={false}
+                  opacity = {1}
+                >
+                  <Image source={require('./assets/Pin_Trans.png')}
+                    style={{
+                    height: 45, width: 35,
+                    // tintColor: '#fff'
+                    }}
+                  />
+                </Marker>
               </MapView>
               <View
                 style={{
