@@ -8,6 +8,7 @@ import MapView, { Marker, Polyline } from 'react-native-maps'
 import CurrentMapview from './components/CurrentMapview'
 import CheckpointMarker from "./components/CheckpointMarker";
 import CentreMapview from "./components/CentreMapview";
+import MyLocation from "./components/MyLocation";
 
 const screenMapWidth = Dimensions.get('window').width
 const screenMapHeight = Dimensions.get('window').height
@@ -168,14 +169,20 @@ const App = () => {
 
 
       {(!showMap&&!showCoffeeMap)&&<View style = {styles.container}>
-        {(location)
+        {/* {(location)
           ? <View>
               <Text>Latitude: {location.coords.latitude}</Text>
               <Text>Longitude: {location.coords.longitude}</Text>
               <Text>Accuracy: {location.coords.accuracy}</Text>
             </View>
           : <Text>{text}</Text>
-        }
+        } */}
+        <MyLocation 
+          location = {location}
+          setLocation = {setLocation}
+          errorMsg = {errorMsg}
+          setErrorMessage = {setErrorMessage}
+        />
       </View>}
       <StatusBar style="auto" />
     </View>
