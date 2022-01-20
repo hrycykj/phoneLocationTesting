@@ -7,6 +7,7 @@ import MapView, { Marker, Polyline } from 'react-native-maps'
 
 import CurrentMapview from './components/CurrentMapview'
 import CheckpointMarker from "./components/CheckpointMarker";
+import CentreMapview from "./components/CentreMapview";
 
 const screenMapWidth = Dimensions.get('window').width
 const screenMapHeight = Dimensions.get('window').height
@@ -134,18 +135,16 @@ const App = () => {
 
         {(showCoffeeMap&&location) &&
             <View style={styles.container}>
-              <CurrentMapview
-                  latitude= {51.046411678111916} 
-                  longitude= {-114.05200055414592}
-                  latitudeDelta= {.008}
-                  longitudeDelta= {.005}
+              <CentreMapview
+                  coords1= {route[0]} 
+                  coords2= {route[route.length-1]}
               >
                 <Polyline
                   coordinates={route}
                   strokeColor='#3399ff'
                   strokeWidth={6}
                 />
-              </CurrentMapview>
+              </CentreMapview>
               <View
                 style={{
                   position: 'absolute',//use absolute position to show button on top of the map
