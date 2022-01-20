@@ -6,6 +6,7 @@ import * as Location from 'expo-location'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 
 import CurrentMapview from './components/CurrentMapview'
+import CheckpointMarker from "./components/CheckpointMarker";
 
 const screenMapWidth = Dimensions.get('window').width
 const screenMapHeight = Dimensions.get('window').height
@@ -101,7 +102,7 @@ const App = () => {
                   longitudeDelta: (location.coords.accuracy*1/111111),
                 }}
               >
-                <Marker
+                {/* <Marker
                   coordinate={{
                     latitude: location.coords.latitude,
                     longitude: location.coords.longitude,
@@ -110,13 +111,18 @@ const App = () => {
                   flat={false}
                   opacity = {1}
                 >
+                </Marker> */}
+                <CheckpointMarker
+                  latitude= {location.coords.latitude}
+                  longitude= {location.coords.longitude}
+                >
                   <Image source={require('./assets/Pin_Trans.png')}
                     style={{
                     height: 45, width: 35,
                     // tintColor: '#fff'
                     }}
                   />
-                </Marker>
+                </CheckpointMarker>
               </MapView>
               <View
                 style={{
