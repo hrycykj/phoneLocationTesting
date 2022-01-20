@@ -93,25 +93,12 @@ const App = () => {
       }
         {(showMap&&location) &&
             <View style={styles.container}>
-              <MapView
-                style={styles.map}
-                region={{
-                  latitude: location.coords.latitude,
-                  longitude: location.coords.longitude,
-                  latitudeDelta: (location.coords.accuracy*30/111111),
-                  longitudeDelta: (location.coords.accuracy*1/111111),
-                }}
+              <CurrentMapview
+                  latitude= {location.coords.latitude} 
+                  longitude= {location.coords.longitude}
+                  latitudeDelta= {location.coords.accuracy*30/111111}
+                  longitudeDelta= {location.coords.accuracy*1/111111}
               >
-                {/* <Marker
-                  coordinate={{
-                    latitude: location.coords.latitude,
-                    longitude: location.coords.longitude,
-                  }}
-                  title={'Me!'}
-                  flat={false}
-                  opacity = {1}
-                >
-                </Marker> */}
                 <CheckpointMarker
                   latitude= {location.coords.latitude}
                   longitude= {location.coords.longitude}
@@ -123,7 +110,7 @@ const App = () => {
                     }}
                   />
                 </CheckpointMarker>
-              </MapView>
+              </CurrentMapview>
               <View
                 style={{
                   position: 'absolute',//use absolute position to show button on top of the map
