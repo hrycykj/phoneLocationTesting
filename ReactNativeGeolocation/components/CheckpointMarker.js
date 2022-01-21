@@ -10,7 +10,7 @@ const CheckpointMarker = (props) => {
 //   console.log("this is my home!", coordinates);
 
   return (
-    <Marker coordinate={coordinates} title={"Me!"} flat={false} opacity={1}>
+    <Marker coordinate={coordinates} title={"Me!"} flat={false} opacity={1} centerOffset={{x: 1, y: -17}}>
         {props.children}
     </Marker>
   );

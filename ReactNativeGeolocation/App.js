@@ -145,6 +145,28 @@ const App = () => {
                   strokeColor='#3399ff'
                   strokeWidth={6}
                 />
+                <CheckpointMarker
+                  latitude= {route[0].latitude}
+                  longitude= {route[0].longitude}
+                >
+                  <Image source={require('./assets/Pin_Trans.png')}
+                    style={{
+                    height: 45, width: 35,
+                    // tintColor: '#fff'
+                    }}
+                  />
+                </CheckpointMarker>
+                <CheckpointMarker
+                  latitude= {route[route.length-1].latitude}
+                  longitude= {route[route.length-1].longitude}
+                >
+                  <Image source={require('./assets/Pin_Trans.png')}
+                    style={{
+                    height: 45, width: 35,
+                    // tintColor: '#fff'
+                    }}
+                  />
+                </CheckpointMarker>
               </CentreMapview>
               <View
                 style={{
