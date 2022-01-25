@@ -2,6 +2,9 @@ import { Button, StyleSheet, Text, View, Dimensions } from 'react-native'
 
 import MapView, { Marker, Polyline } from 'react-native-maps'
 
+const screenMapWidth = Dimensions.get('window').width
+const screenMapHeight = Dimensions.get('window').height
+
 const CurrentMapview = (props) => {
     latitude = props.latitude
     longitude = props.longitude
@@ -35,8 +38,8 @@ let styles = StyleSheet.create({
       justifyContent: 'center',
     },
     map: {
-      width: 300,
-      height: 300,
+      width: screenMapWidth,
+      height: screenMapHeight,
     },
   });
 
